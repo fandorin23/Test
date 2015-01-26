@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+
+	<xsd:element name="customers">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="customer" type="customer" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="customer">
+		<xsd:sequence>
+			<xsd:element type="xsd:int" name="id" />
+			<xsd:element type="xsd:string" name="name" />
+			<xsd:element ref="orders" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="orders">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="order" type="order" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="order">
+		<xsd:sequence>
+			<xsd:element type="xsd:int" name="id" />
+			<xsd:element ref="positions" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="positions">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="position" type="position" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="position">
+		<xsd:sequence>
+			<xsd:element type="xsd:int" name="id" />
+			<xsd:element type="xsd:decimal" name="price" />
+			<xsd:element type="xsd:int" name="count" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
